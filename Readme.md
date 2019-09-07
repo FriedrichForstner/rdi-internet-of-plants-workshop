@@ -1,4 +1,4 @@
-# Adafruit Sensor Extension Bring-up Tests
+# Internet of Trees Workshop for Kids
 ## Purpose
 Exploration code for ReDI's InternetoPlants for kids workshop. Sensing plant related environmental paramters with Arduino and recording/plotting/processing them in Python.
 
