@@ -4,7 +4,7 @@ Exploration code for ReDI's InternetoPlants for kids workshop. Sensing plant rel
 
 ## Preperation
 ### Arduino
-+ install Arduino IDE
++ install [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 + install libraries for mainboard (if neccessary, e.g. Adafruit boards)
 + install libraries for sensors
 + compile and run on Arduino device
