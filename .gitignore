@@ -1,0 +1,47 @@
+# python
+*.pyc
+.eggs/
+*.egg-info/
+.cache/
+
+# Mac stuff
+*.DS_Store
+
+# unit test and pylint stuff
+.coverage
+coverage/
+\.coverage\.*
+.pylint.d/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# documentation
+/docs/
+/docs/source/
+/docs/html/
+
+# sphinx artefacts
+docs/html/
+docs/source/
+
+# tox virtualenv manager for unit tests
+.tox/
+
+# pycharm
+.idea/
+__pycache__/
+.pytest_cache/
+
+# folder for rope, a python refactoring library
+.ropeproject/
+
+# other
+ignore/
+.temp/
+.directory
+config.py
+
+# credentials
+credentials.ini
+credentials.json
