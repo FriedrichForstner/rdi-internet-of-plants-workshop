@@ -44,6 +44,7 @@ void setup() {
 
   // Info LED
   pixel.begin();
+  pixel.setBrightness(8);
   pixel.show();
 
 }
@@ -76,12 +77,20 @@ void loop() {
   Serial.print(luminance);
   Serial.println("");
 
-  delay(600);
-
-  pixel.setPixelColor(0, 255, 0, 0);
+  // Conditional LED blinking color (e.g. based on temperature)
+  if (airTemperature>16.0 & airTemperature<25.0){
+    pixel.setPixelColor(0, 0, 128, 0);
+  }
+  else if (airTemperature>12.0 & airTemperature<27.0){
+    pixel.setPixelColor(0, 255,165,0);
+  }
+  else {
+    pixel.setPixelColor(0, 128, 0, 0);
+  }
   pixel.show();
   delay(400);
   pixel.setPixelColor(0, 0, 0, 0);
   pixel.show();
+  delay(600);
 
 }
