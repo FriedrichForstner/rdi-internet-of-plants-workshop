@@ -1,10 +1,11 @@
-# Adafruit Sensor Extension Bring-up Tests
+# Internet of Plants - Workshop for Kids
 ## Purpose
 Exploration code for ReDI's InternetoPlants for kids workshop. Sensing plant related environmental paramters with Arduino and recording/plotting/processing them in Python.
 
 ## Preperation
 ### Arduino
 + install Arduino IDE and sensor librries
+    + install [Arduino IDE](https://www.arduino.cc/en/Main/Software)
     + Add Adafruit board support: in the Arduino IDE Menu->Preferences add https://adafruit.github.io/arduino-board-index/package_adafruit_index.json to the "Additional Boards Manager URLs" line, confirm with OK
     + Install board drivers: in Arduino IDE Menu->Tools->Boards Manager search for "Adafruit samd boards" and select the 1.5.x version
     + Install sensor drivers: in the Arduino IDE Menu->Tools->Manage Libraries search and install "Adafruit Unified Sensor" (on the bottom), "Adafruit seesaw", "Adafruit TSL2591", "DHT sensor library" (by adafruit)
