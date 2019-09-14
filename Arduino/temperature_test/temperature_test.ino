@@ -101,8 +101,7 @@ void loop() {
   if ((airTemperature > 24) || (airHumidity > 88)) {
     setColor("RED");
   }
-  else
-  {
+  else{
     setColor("GREEN");
   }
   delay(300);
