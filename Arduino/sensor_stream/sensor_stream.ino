@@ -29,7 +29,7 @@ Adafruit_NeoPixel pixel(1, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  // while (!Serial);
 
   // init environmental sensor
   dht.begin();

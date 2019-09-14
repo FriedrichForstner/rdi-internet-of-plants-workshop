@@ -9,7 +9,7 @@ Exploration code for ReDI's InternetoPlants for kids workshop. Sensing plant rel
     + Add Adafruit board support: in the Arduino IDE Menu->Preferences add https://adafruit.github.io/arduino-board-index/package_adafruit_index.json to the "Additional Boards Manager URLs" line, confirm with OK
     + Install board drivers: in Arduino IDE Menu->Tools->Boards Manager search for "Adafruit samd boards" and select the 1.5.x version
     + Install sensor drivers: in the Arduino IDE Menu->Tools->Manage Libraries search and install "Adafruit Unified Sensor" (on the bottom), "Adafruit seesaw", "Adafruit TSL2591", "DHT sensor library" (by adafruit), "Adafruit Neopixel" (for M0)
-+ select the board: Arduino->Tools->Board then select Adafruit Feather Express M0
++ select the board: Arduino->Tools->Board then select "Adafruit Feather M0 Express"
 + compile: press "verify" (check button in the top left) the sensor_stream library and check if everythings runs ok
 + compile and install: press "upload" (arrow right in the button top left)
 + open the serial monitor: in Arduino IDE Menu->Tools->Serial Monitor , data should be printed
