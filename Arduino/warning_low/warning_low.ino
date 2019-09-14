@@ -77,10 +77,6 @@ void loop() {
   Serial.print(luminance);
   Serial.println("");
 
-  // to add to the readme: 
-  // install ada neopixel
-  // open serial monitor to actually start the program
-  
   // all good
   if ((luminance>50.0) & (soilHumidity>500.0)){
     // green
