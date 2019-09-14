@@ -27,6 +27,10 @@ Adafruit_seesaw soilSensor;
 // init LED
 Adafruit_NeoPixel pixel(1, LED_PIN, NEO_GRB + NEO_KHZ800);
 
+//global sensor values
+float airTemperature,airHumidity,soilTemperature,luminance;
+uint16_t soilHumidity;
+
 void setup() {
   Serial.begin(9600);
   while (!Serial);
@@ -49,54 +53,58 @@ void setup() {
 
 }
 
-void loop() {
+void setColor(char* color) {
+   if(strcmp(color, "Green") == 0) {
+      pixel.setPixelColor(0, 0, 128, 0);
+    }else if(strcmp(color, "Yellow") == 0) {
+      pixel.setPixelColor(0, 255, 255, 0);
+    }else if(strcmp(color, "Red") == 0) {
+      pixel.setPixelColor(0, 255, 0, 0);
+    }
+    pixel.show();
+}
 
+void printSensorValues(){ 
+    // single line serial output with all parameter
+    // air_temperature, air_humidity, soil_temperature, soil_humidity, luminance
+    Serial.println((String) airTemperature +","+airHumidity+","+soilTemperature+","+soilHumidity+","+luminance);
+}
+
+void initializeSensorValues(){
   // air sensor
-  float airTemperature = dht.readTemperature(); // air temperature in C
-  float airHumidity = dht.readHumidity(); // air humidity
+  airTemperature = dht.readTemperature(); // air temperature in C
+  airHumidity = dht.readHumidity(); // air humidity
 
   // soil sensor
-  float soilTemperature = soilSensor.getTemp();
-  uint16_t soilHumidity= soilSensor.touchRead(0);
+  soilTemperature = soilSensor.getTemp();
+  soilHumidity= soilSensor.touchRead(0);
 
   // luminance sensor
   sensors_event_t event;
   luminanceSensor.getEvent(&event);
-  float luminance = event.light;
+  luminance = event.light;
+}
 
-  // single line serial output with all parameter
-  // air_temperature, air_humidity, soil_temperature, soil_humidity, luminance
-  Serial.print(airTemperature);
-  Serial.print(",");
-  Serial.print(airHumidity);
-  Serial.print(",");
-  Serial.print(soilTemperature);
-  Serial.print(",");
-  Serial.print(soilHumidity);
-  Serial.print(",");
-  Serial.print(luminance);
-  Serial.println("");
 
+
+void loop() {
+  initializeSensorValues();
+  printSensorValues();
+  
   // all good
   if ((luminance>50.0) & (soilHumidity>500.0)){
-    // green
-    pixel.setPixelColor(0, 0, 255, 0);
+    setColor("Green");
   }
 
   // too dry soil
   if (luminance<=50.0){
-    // yellow
-    pixel.setPixelColor(0, 255, 255, 0);
+   setColor("Yellow");
   }
 
-  // to low light
-  if (soilHumidity<=500){    
-    //red
-    pixel.setPixelColor(0, 255, 0, 0);
+  // too low light
+  if (soilHumidity<=500){ 
+   setColor("Red");
   } 
-
-
-  pixel.show();
   
-  delay(2000);
+  delay(1000);
 }
