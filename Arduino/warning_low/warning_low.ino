@@ -67,6 +67,7 @@ void setColor(char* color) {
 void printSensorValues() {
   // single line serial output with all parameter
   // air_temperature, air_humidity, soil_temperature, soil_humidity, luminance
+  //Luft Temperatur, Luft Feuchtigkeit, Erde Temperatur, Erde Feuchtigkeit, Leuchtdichte
   Serial.println((String) airTemperature + "," + airHumidity + "," + soilTemperature + "," + soilHumidity + "," + luminance);
 }
 
