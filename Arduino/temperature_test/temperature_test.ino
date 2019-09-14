@@ -93,21 +93,17 @@ void initializeSensorValues() {
 void loop() {
   initializeSensorValues();
   printSensorValues();
-
-  // all good
-  if ((luminance > 50.0) & (soilHumidity > 500.0)) {
-    setColor("GREEN");
-  }
-
-  // too dry soil
-  if (luminance <= 50.0) {
-    setColor("YELLOW");
-  }
-
-  // too low light
-  if (soilHumidity <= 500) {
+  
+  setColor("INVISIBLE");
+  delay(150);
+  
+  // too much air temperature or humidiity
+  if ((airTemperature > 24) || (airHumidity > 88)) {
     setColor("RED");
   }
-
-  delay(1000);
+  else
+  {
+    setColor("GREEN");
+  }
+  delay(300);
 }
