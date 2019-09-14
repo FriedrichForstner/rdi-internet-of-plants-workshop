@@ -22,4 +22,4 @@ Exploration code for ReDI's InternetoPlants for kids workshop. Sensing plant rel
 ## Todo
 + robustness
 + python env and dependencies
-+ documentation
++ documentation .
