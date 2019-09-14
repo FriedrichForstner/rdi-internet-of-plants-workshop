@@ -1,11 +1,11 @@
 /*
- * Exploration code for ReDI's InternetoPlants for kids workshop. 
- * Sensing plant related environmental paramters with Arduino and 
- * recording/plotting/processing them in Python.
- * 
- * Author: ReDI School Munich
- * License: GPL v3
- */
+   Exploration code for ReDI's InternetoPlants for kids workshop.
+   Sensing plant related environmental paramters with Arduino and
+   recording/plotting/processing them in Python.
+
+   Author: ReDI School Munich
+   License: GPL v3
+*/
 
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
@@ -28,7 +28,7 @@ Adafruit_seesaw soilSensor;
 Adafruit_NeoPixel pixel(1, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 //global sensor values
-float airTemperature,airHumidity,soilTemperature,luminance;
+float airTemperature, airHumidity, soilTemperature, luminance;
 uint16_t soilHumidity;
 
 void setup() {
@@ -54,30 +54,30 @@ void setup() {
 }
 
 void setColor(char* color) {
-   if(strcmp(color, "Green") == 0) {
-      pixel.setPixelColor(0, 0, 128, 0);
-    }else if(strcmp(color, "Yellow") == 0) {
-      pixel.setPixelColor(0, 255, 255, 0);
-    }else if(strcmp(color, "Red") == 0) {
-      pixel.setPixelColor(0, 255, 0, 0);
-    }
-    pixel.show();
+  if (strcmp(color, "Green") == 0) {
+    pixel.setPixelColor(0, 0, 128, 0);
+  } else if (strcmp(color, "Yellow") == 0) {
+    pixel.setPixelColor(0, 255, 255, 0);
+  } else if (strcmp(color, "Red") == 0) {
+    pixel.setPixelColor(0, 255, 0, 0);
+  }
+  pixel.show();
 }
 
-void printSensorValues(){ 
-    // single line serial output with all parameter
-    // air_temperature, air_humidity, soil_temperature, soil_humidity, luminance
-    Serial.println((String) airTemperature +","+airHumidity+","+soilTemperature+","+soilHumidity+","+luminance);
+void printSensorValues() {
+  // single line serial output with all parameter
+  // air_temperature, air_humidity, soil_temperature, soil_humidity, luminance
+  Serial.println((String) airTemperature + "," + airHumidity + "," + soilTemperature + "," + soilHumidity + "," + luminance);
 }
 
-void initializeSensorValues(){
+void initializeSensorValues() {
   // air sensor
   airTemperature = dht.readTemperature(); // air temperature in C
   airHumidity = dht.readHumidity(); // air humidity
 
   // soil sensor
   soilTemperature = soilSensor.getTemp();
-  soilHumidity= soilSensor.touchRead(0);
+  soilHumidity = soilSensor.touchRead(0);
 
   // luminance sensor
   sensors_event_t event;
@@ -90,21 +90,21 @@ void initializeSensorValues(){
 void loop() {
   initializeSensorValues();
   printSensorValues();
-  
+
   // all good
-  if ((luminance>50.0) & (soilHumidity>500.0)){
+  if ((luminance > 50.0) & (soilHumidity > 500.0)) {
     setColor("Green");
   }
 
   // too dry soil
-  if (luminance<=50.0){
-   setColor("Yellow");
+  if (luminance <= 50.0) {
+    setColor("Yellow");
   }
 
   // too low light
-  if (soilHumidity<=500){ 
-   setColor("Red");
-  } 
-  
+  if (soilHumidity <= 500) {
+    setColor("Red");
+  }
+
   delay(1000);
 }
