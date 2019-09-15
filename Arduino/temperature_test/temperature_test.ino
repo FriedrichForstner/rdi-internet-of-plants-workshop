@@ -95,14 +95,16 @@ void loop() {
   printSensorValues();
   
   setColor("INVISIBLE");
+  
   delay(150);
   
   // too much air temperature or humidiity
-  if ((airTemperature > 24) || (airHumidity > 88)) {
+  if ((airTemperature > 24) | (airHumidity > 88)) {
     setColor("RED");
   }
   else{
     setColor("GREEN");
   }
+  
   delay(300);
 }
