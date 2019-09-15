@@ -28,8 +28,8 @@ Adafruit_seesaw soilSensor;
 Adafruit_NeoPixel pixel(1, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 //global sensor values
-float airTemperature, airHumidity, soilTemperature, luminance;
-uint16_t soilHumidity;
+float airTemperature, airHumidity, soilTemperature, luminancePercentage;
+uint16_t soilHumidityPercentage;
 
 void setup() {
   Serial.begin(9600);
@@ -66,11 +66,16 @@ void setColor(char* color) {
   pixel.show();
 }
 
+void normalizeSensorValues() {
+  soilHumidityPercentage = ((soilHumidityPercentage - 250) / 850) * 100;
+  luminancePercentage = (luminancePercentage / 1500) * 100;
+}
+
 void printSensorValues() {
   // single line serial output with all parameter
-  // air_temperature, air_humidity, soil_temperature, soil_humidity, luminance
+  // air_temperature, air_humidity, soil_temperature, soil_humidity, luminancePercentage
   //Luft Temperatur, Luft Feuchtigkeit, Erde Temperatur, Erde Feuchtigkeit, Leuchtdichte
-  Serial.println((String) airTemperature + "," + airHumidity + "," + soilTemperature + "," + soilHumidity + "," + luminance);
+  Serial.println((String) airTemperature + "," + airHumidity + "," + soilTemperature + "," + soilHumidityPercentage + "," + luminancePercentage);
 }
 
 void initializeSensorValues() {
@@ -80,12 +85,14 @@ void initializeSensorValues() {
 
   // soil sensor
   soilTemperature = soilSensor.getTemp();
-  soilHumidity = soilSensor.touchRead(0);
+  soilHumidityPercentage = soilSensor.touchRead(0);
 
   // luminance sensor
   sensors_event_t event;
   luminanceSensor.getEvent(&event);
-  luminance = event.light;
+  luminancePercentage = event.light;
+
+  normalizeSensorValues();
 }
 
 
