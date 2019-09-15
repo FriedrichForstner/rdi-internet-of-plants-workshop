@@ -67,7 +67,7 @@ while True:
         client.celsiusWrite(1, sensor_data_dict["air_temperature"])
         client.virtualWrite(2, sensor_data_dict["air_humidity"],"rel_hum","p")
         client.celsiusWrite(3, sensor_data_dict["soil_temperature"])
-        client.virtualWrite(4, sensor_data_dict["soil_humidity"],"null","analog_sensor")
+        client.virtualWrite(4, sensor_data_dict["soil_humidity"],"res","ohm")
         client.luxWrite(5, sensor_data_dict["luminance"])
         clear_output()
         print(sensor_data_arr)   
