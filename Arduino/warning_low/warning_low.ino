@@ -33,7 +33,7 @@ uint16_t soilHumidity;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  // while (!Serial);
 
   // init environmental sensor
   dht.begin();
